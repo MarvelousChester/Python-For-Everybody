@@ -5,10 +5,10 @@
 em = open("mbox-short.txt")
 who = []
 count = 0
-for line in em:
-    if not line.startswith("From:"):
+for line in em: 
+    if not line.startswith("From:"):  # gets rid of uninteresting lines
         continue
-    who = line.split()
+    who = line.split()  #splits line into list that can be indexed 
     count += 1
     print(who[1])
 print("The amount of lines are " + str(count))
