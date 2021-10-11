@@ -1,20 +1,3 @@
-# Self Excercise 
-# Checks how many times each email is repeated / own excercise for dict()
-dates = dict()
-text = open("mbox.txt")
-for line in text:
-    if not line.startswith("From:"):  # for the actual code change it From
-        continue
-    line = line.rstrip()
-    word = line.split()
-    for i in word:
-        if word not in dates:
-            dates[word] = 1
-        else:
-            dates[word] += 1
-
-print(dates)
-
 # Exercise 2: Write a program that categorizes each mail message by which day of the week the commit was done.
 # To do this look for lines that start with “From”, then look for the third word and keep a running count of each of the
 # days of the week. At the end of the program print out the contents of your dictionary (order does not matter). mbox
@@ -38,4 +21,22 @@ for line in text:
         else:
             dates[word[2]] += 1  # additional counts
 
+print(dates)
+
+# Exercise 3
+# Checks how many times each email is repeated / 
+rep = dict()
+text = open("mbox.txt")
+for line in text:
+    if not line.startswith("From:"):  # for the actual code change it From
+        continue
+    line = line.rstrip()
+    word = line.split()
+    del word[0:1]  # deletes From from being printed it out
+    print(word)
+    for i in word:
+        if i not in rep:
+            rep[i] = 1
+        else:
+            rep[i] += 1
 print(dates)
