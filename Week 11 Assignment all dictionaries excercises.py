@@ -16,6 +16,7 @@ for line in text:
         continue
     else:
         if word[2] not in dates:
+            # rep[i] = rep.get(i, 0) + 1 Does the same thing as if and else lines
             dates[word[2]] = 1  # first entry
         else:
             dates[word[2]] += 1  # additional counts
@@ -34,6 +35,7 @@ for line in text:
     del word[0:1]  # deletes From from being printed it out
     print(word)
     for i in word:
+        # rep[i] = rep.get(i, 0) + 1 Does the same thing as if and else lines
         if i not in rep:
             rep[i] = 1
         else:
