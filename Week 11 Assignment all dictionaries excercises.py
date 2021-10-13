@@ -86,3 +86,24 @@ highest_V = max(rep.values())  # Highest Value int
 
 # print(highest, highest_V)
 
+# Exercise 5: This program records the domain name (instead of the address) where the message was sent from instead
+# of who the mail came from (i.e., the whole email address). At the end of the program, print out the contents of
+# your dictionary.
+print("Hello World")
+who = dict()
+
+file = open("mbox.txt")
+
+for line in file:
+    if not line.startswith("From"):
+        continue
+    word = line.split()
+    new_find = line.find('@')  # Finds where in the line does @ Start from
+    pps = line.find(' ', new_find)  # Finds the end of the line for @
+    host = line[new_find+1 : pps]   #
+    print(host)
+    # Builds the entries for the dictionary 
+    who[host] = who.get(host, 0) + 1
+    
+
+print(who)
