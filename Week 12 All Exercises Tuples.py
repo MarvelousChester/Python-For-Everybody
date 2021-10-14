@@ -31,3 +31,80 @@ emails_order = sorted(emails_order, reverse=True)
 
 for val, key in emails_order[:10]:
     print(key, val)
+
+# Exercise 2: 
+# This program counts the distribution of the hour of the day for each of the messages. You can pull the
+# hour from the “From” line by finding the time string and then splitting that string into parts using the colon
+# character. Once you have accumulated the counts for each hour, print out the counts, one per line, sorted by hour
+# as shown below.
+
+
+time = dict()
+txt = open("mbox-short.txt")
+lst = list()
+
+# What I tried and didn't work
+for line in txt:
+    words = line.split()
+    if len(words) < 3 or words[0] != 'From':
+        continue
+    line = line.strip()
+    fp = line.find(":")  # Finds what point does the : begin
+    hp = line.find(' ', fp) # Finds the end of the portion of time
+    host = line[fp-2 : hp]  # Isolates the date to only have time, minute, seconds
+    new_line = host.split(":")   # splits data into list
+    del new_line[1:3]  # deletes unnecessary minute and seconds
+
+    for i in new_line:
+        if i not in time:
+            time[i] = 1
+        else:
+            time[i] += 1
+
+
+for key, val in (time.items()):
+    nums = (val,key)
+    lst.append(nums)   # Adds hour and count to list
+
+lst = sorted(lst, reverse=True)  # Puts into order from largest to smallest
+
+for key, val in lst:   # Goes through list and prints it
+    print(val, key)
+
+
+# notes:
+# Struggled with this as I the method I used I did not notice that when I used the find method and host I ignored the
+# hours and counted minutes and second which took a while to troubleshoot but once fixed it became easier, All I had to
+# do was change [fp+1: hp] was to [fp-2: hp] to add the hours from the find
+# I saw many other solutions and found them to be shorter and easier to do to my, Below is code from Jmelahman I found
+
+#
+# dictionary_hours = dict()               # Initialize variables
+# lst = list()
+#
+# fname = input('Enter file name: ')
+# try:
+#     fhand = open(fname)
+# except FileNotFoundError:
+#     print('File cannot be opened:', fname)
+#     quit()
+#
+# for line in fhand:
+#     words = line.split()
+#     if len(words) < 2 or words[0] != 'From':
+#         continue
+#
+#     col_pos = words[5].find(':')
+#     hour = words[5][:col_pos]
+#     if hour not in dictionary_hours:
+#         dictionary_hours[hour] = 1      # First entry
+#     else:
+#         dictionary_hours[hour] += 1     # Additional counts
+#
+# for key, val in list(dictionary_hours.items()):
+#     lst.append((key, val))              # Fills list with hour, count of dict
+#
+# lst.sort()                              # Sorts by hour
+#
+# for key, val in lst:
+#     print(key, val)
