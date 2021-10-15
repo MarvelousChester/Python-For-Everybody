@@ -94,8 +94,8 @@ for key, val in lst:   # Goes through list and prints it
 #     if len(words) < 2 or words[0] != 'From':
 #         continue
 #
-#     col_pos = words[5].find(':')
-#     hour = words[5][:col_pos]
+#     col_pos = words[5].find(':')  # Finds the position of the Colon
+#     hour = words[5][:col_pos]     # Isolates the block of of texted needed with starting from begining of index 5 and to the position of the colon which is the hour
 #     if hour not in dictionary_hours:
 #         dictionary_hours[hour] = 1      # First entry
 #     else:
