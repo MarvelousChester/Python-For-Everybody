@@ -108,3 +108,37 @@ for key, val in lst:   # Goes through list and prints it
 #
 # for key, val in lst:
 #     print(key, val)
+
+# Exercise 3: Write a program that reads a file and prints the letters in decreasing order of frequency. Your program
+# should convert all the input to lower case and only count the letters a-z. Your program should not count spaces,
+# digits, punctuation, or anything other than the letters a-z. Find text samples from several different languages and
+# see how letter frequency varies between languages. Compare your results with the tables at
+# https://wikipedia.org/wiki/Letter_frequencies.
+import string
+
+bag = dict()
+lst = list()
+
+txt = open("Copy.txt")
+
+for line in txt:
+    line = line.strip()
+    line = line.lower()
+    # line.translate(str.maketrans(fromstr, tostr, deletestr)) ,
+    # fromstr: list of characters that need to be replaced, tostr: replacer depending on whats written
+    line = line.translate(line.maketrans("", "", string.punctuation))
+    word = line.split()
+    # Make words into letters
+
+    for i in word:
+        if i not in bag:
+            bag[i] = 1
+        else:
+            bag[i] += 1
+
+# putting into tuple
+
+# Order and sorting
+
+# Printing out the frequencies
+print(bag)
