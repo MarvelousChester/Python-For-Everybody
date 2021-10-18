@@ -126,19 +126,26 @@ for line in txt:
     line = line.lower()
     # line.translate(str.maketrans(fromstr, tostr, deletestr)) ,
     # fromstr: list of characters that need to be replaced, tostr: replacer depending on whats written
+
     line = line.translate(line.maketrans("", "", string.punctuation))
     word = line.split()
     # Make words into letters
 
     for i in word:
-        if i not in bag:
-            bag[i] = 1
-        else:
-            bag[i] += 1
+        for letter in i:
+            if letter not in bag:
+                bag[letter] = 1
+            else:
+                bag[letter] += 1
 
 # putting into tuple
+for key, val in (bag.items()):
+    order = (val, key)
+    lst.append(order)
+
 
 # Order and sorting
-
+lst = sorted(lst, reverse=True)
 # Printing out the frequencies
-print(bag)
+for val, key in lst:
+    print(key, val)
